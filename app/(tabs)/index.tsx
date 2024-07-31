@@ -4,14 +4,18 @@ import { BackgroundImage } from '@/constants/images';
 
 const Home = () => {
   return (
-    <SafeAreaView className='flex-1 bg-gray mt-16'>
+    <SafeAreaView className='flex-1 bg-gray'>
       <View>
-        <Image
-          style={{ width: 200, height: 20 }}
+        <ImageBackground
           source={BackgroundImage}
-          resizeMode='contain'
-        />
-        <Text>Home</Text>
+          className='h-1/2 w-full bg-primary'
+        >
+          <View className='p-5'>
+            <View className='flex-row justify-between'>
+              <Text>Home</Text>
+            </View>
+          </View>
+        </ImageBackground>
       </View>
     </SafeAreaView>
   );
