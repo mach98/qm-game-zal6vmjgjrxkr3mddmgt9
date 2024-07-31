@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "QM-Game",
-    "slug": "qm-game-zal6vmjgjrxkr3mddmgt9",
+    "slug": "qm-game",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -14,14 +14,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.mach98.qmgamezal6vmjgjrxkr3mddmgt9"
+      "bundleIdentifier": "com.mach98.qmgame"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.mach98.qmgamezal6vmjgjrxkr3mddmgt9"
+      "package": "com.mach98.qmgame"
     },
     "web": {
       "bundler": "metro",
