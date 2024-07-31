@@ -1,4 +1,4 @@
-import { SafeAreaView, View, Text } from 'react-native';
+import { SafeAreaView, View, Text, ImageBackground } from 'react-native';
 import React from 'react';
 
 const Home = () => {
