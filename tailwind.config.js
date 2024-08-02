@@ -15,6 +15,7 @@ module.exports = {
         darkBlue: '#17478B',
         homeBg: '#F9F9F9',
         helpColor: '#51A2E0',
+        questionBox: '#00CBF7',
       },
     },
   },

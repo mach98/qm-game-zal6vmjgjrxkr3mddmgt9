@@ -65,7 +65,7 @@ const Home = () => {
           </Text>
         </View>
         <View className='mt-7 bg-primary w-full rounded-b-xl p-5 flex-row justify-between items-center'>
-          <Link href='/Game/GameScreen' asChild>
+          <Link href='/Game' asChild>
             <Pressable
               style={{
                 backgroundColor: 'white',
