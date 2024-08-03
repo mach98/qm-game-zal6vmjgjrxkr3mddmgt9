@@ -8,28 +8,35 @@ import {
 import React, { useState, FC, useEffect } from 'react';
 import { BackgroundImage } from '@/constants/images';
 import useDecodedData from '@/hooks/useDecodedData';
-import Question from '@/components/Question';
+import Question, { insertCorrectAnswer } from '@/components/Question';
 import useDataDecoded from '@/hooks/useDataDecoded';
+import { router } from 'expo-router';
 
-interface GameScreenProps {
-  item: {
-    category?: string;
-    correct_answer: string;
-    difficulty?: string;
-    incorrect_answers: string[];
-    question: string;
-    type?: string;
-  };
-}
-
-const GameScreen: FC<GameScreenProps> = ({ item }) => {
-  //const [questions, setQuestions] = useState(null);
+const GameScreen: FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+  const [incorrectAnswersCount, setIncorrectAnswersCount] = useState(0);
+  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(
+    null
+  );
+  const [allAnswers, setAllAnswers] = useState<string[]>([]);
   const url =
     'https://opentdb.com/api.php?amount=10&category=32&difficulty=easy&type=multiple&encode=url3986';
   //   const url = process.env.EXPO_PUBLIC_API_URL;
 
   const { data, loading, error } = useDecodedData(url);
+
+  // useEffect(() => {
+  //   if (data) {
+  //     const currentQuestion = data[currentQuestionIndex];
+  //     setAllAnswers(
+  //       insertCorrectAnswer(
+  //         currentQuestion.correct_answer,
+  //         currentQuestion.incorrect_answers
+  //       )
+  //     );
+  //   }
+  // }, [data, currentQuestionIndex]);
   if (loading)
     return (
       <SafeAreaView className='bg-homeBg flex-1 items-center justify-center'>
@@ -42,20 +49,43 @@ const GameScreen: FC<GameScreenProps> = ({ item }) => {
   }
 
   const handleNextQuestion = () => {
-    setCurrentQuestionIndex((prevIndex) =>
-      prevIndex + 1 < data.length ? prevIndex + 1 : 0
-    );
+    setSelectedAnswerIndex(null);
+    if (currentQuestionIndex + 1 < data?.length) {
+      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+    } else {
+      router.replace({
+        pathname: '/Game/ResultScreen',
+        params: {
+          correctAnswersCount,
+          incorrectAnswersCount,
+        },
+      });
+    }
   };
 
-  // console.log('Rendered data:', data[currentQuestionIndex]);
+  const handleAnswerSelection = (isCorrect: boolean) => {
+    if (isCorrect) {
+      setCorrectAnswersCount((prev) => prev + 1);
+    } else {
+      setIncorrectAnswersCount((prev) => prev + 1);
+    }
+    setTimeout(() => {
+      handleNextQuestion();
+    }, 500);
+  };
+
+  //console.log('Rendered data:', data[currentQuestionIndex]);
   return (
-    <SafeAreaView className='items-start justify-start p-5 bg-primary flex-1'>
+    <SafeAreaView className='items-start justify-start p-5 bg-primary flex-1 mt-10'>
       <View className='flex-row justify-between w-1/2 items-center'>
         <Text className='text-white text-xl'>00.00.46</Text>
         <Text className='text-white text-xl'>Timer</Text>
       </View>
       <Question
-        item={{ ...data?.[currentQuestionIndex], onPress: handleNextQuestion }}
+        item={data?.[currentQuestionIndex]}
+        selectedAnswerIndex={selectedAnswerIndex}
+        setSelectedAnswerIndex={setSelectedAnswerIndex}
+        onAnswerSelection={handleAnswerSelection}
       />
     </SafeAreaView>
   );

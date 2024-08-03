@@ -1,5 +1,12 @@
-import { View, Text, Pressable, TouchableOpacity } from 'react-native';
-import React, { FC, memo } from 'react';
+import {
+  View,
+  Text,
+  Pressable,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
+import React, { FC, memo, useState } from 'react';
+import { COLORS } from '@/constants/colors';
 
 interface QuestionProps {
   item: {
@@ -9,11 +16,13 @@ interface QuestionProps {
     incorrect_answers: string[];
     question: string;
     type?: string;
-    onPress: () => void;
   };
+  selectedAnswerIndex: number | null;
+  setSelectedAnswerIndex: (index: number | null) => void;
+  onAnswerSelection: (isCorrect: boolean) => void;
 }
 
-const insertCorrectAnswer = (
+export const insertCorrectAnswer = (
   correctAnswer: string,
   incorrectAnswers: string[]
 ): string[] => {
@@ -28,18 +37,32 @@ const getPrefix = (index: number): string => {
   return prefixes[index] || '';
 };
 
-const Question: FC<QuestionProps> = ({ item }) => {
+const Question: FC<QuestionProps> = ({
+  item,
+  selectedAnswerIndex,
+  setSelectedAnswerIndex,
+  onAnswerSelection,
+}) => {
   if (!item) return null;
 
   const allAnswers = insertCorrectAnswer(
     item.correct_answer,
     item.incorrect_answers
   );
+
+  const handlePress = (index: number) => {
+    setSelectedAnswerIndex(index);
+    const isCorrect = allAnswers[index] === item.correct_answer;
+    onAnswerSelection(isCorrect);
+  };
   return (
-    <View>
-      <View className='mt-10 border-8 rounded-xl border-questionBox w-full items-center p-10'>
-        <Text className='text-white text-2xl font-semibold'>Question</Text>
-        <Text className='text-white text-2xl font-semibold text-center mt-5'>
+    <View className='w-full'>
+      <View
+        className='mt-10 rounded-xl border-questionBox items-center p-10 bg-white'
+        style={{ borderWidth: 8, borderColor: COLORS.questionBox }}
+      >
+        <Text className='text-black text-2xl font-semibold'>Question</Text>
+        <Text className='text-black text-xl font-semibold text-center mt-5'>
           {decodeURIComponent(item.question)}
         </Text>
       </View>
@@ -49,20 +72,55 @@ const Question: FC<QuestionProps> = ({ item }) => {
           Choose correct option
         </Text>
         {allAnswers.map((answer, index) => (
-          <Pressable
+          <TouchableOpacity
             key={index}
-            className='bg-white mt-5 p-5 rounded-full flex-row items-center justify-start active:bg-green-600'
-            onPress={item.onPress}
+            style={[
+              styles.answerButton,
+              selectedAnswerIndex === index && styles.selectedAnswerButton,
+              selectedAnswerIndex === index &&
+                allAnswers[index] === item.correct_answer &&
+                styles.correctAnswerButton,
+              selectedAnswerIndex === index &&
+                allAnswers[index] !== item.correct_answer &&
+                styles.incorrectAnswerButton,
+            ]}
+            onPress={() => handlePress(index)}
           >
-            <Text className='font-semibold text-red-600'>
-              {getPrefix(index)}.
+            <Text className='font-semibold'>{getPrefix(index)}.</Text>
+            <Text style={{ marginLeft: 10, fontSize: 15, alignSelf: 'center' }}>
+              {' '}
+              {decodeURIComponent(answer)}
             </Text>
-            <Text className=''> {decodeURIComponent(answer)}</Text>
-          </Pressable>
+          </TouchableOpacity>
         ))}
       </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  answerButton: {
+    backgroundColor: 'white',
+    marginTop: 10,
+    flexDirection: 'row',
+    padding: 20,
+    borderRadius: 50,
+    alignItems: 'center',
+  },
+  selectedAnswerButton: {
+    borderColor: 'white',
+  },
+  correctAnswerButton: {
+    backgroundColor: COLORS.correctAnswerColor,
+    borderColor: COLORS.correctAnswerBorder,
+    borderWidth: 2,
+  },
+  incorrectAnswerButton: {
+    backgroundColor: COLORS.incorrectAnswerColor,
+    borderColor: COLORS.incorrectAnswerBorder,
+    borderWidth: 2,
+    borderRadius: 50,
+  },
+});
 
 export default memo(Question);

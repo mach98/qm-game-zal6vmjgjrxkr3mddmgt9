@@ -4,14 +4,17 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Slot } from 'expo-router';
 
 import '../global.css';
+import { COLORS } from '@/constants/colors';
 
 export default function RootLayout() {
   return (
-    <GestureHandlerRootView>
-      <StatusBar />
-      <Stack>
-        <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
-      </Stack>
-    </GestureHandlerRootView>
+    <>
+      <StatusBar backgroundColor={COLORS.primary} />
+      <GestureHandlerRootView>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+        </Stack>
+      </GestureHandlerRootView>
+    </>
   );
 }
