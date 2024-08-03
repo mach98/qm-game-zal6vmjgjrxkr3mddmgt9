@@ -32,6 +32,8 @@ const useDecodedData = (url: string) => {
   };
 
   useEffect(() => {
+    let isMounted = true; // Track whether the component is still mounted
+
     const fetchData = async () => {
       try {
         setLoading(true);
@@ -41,19 +43,23 @@ const useDecodedData = (url: string) => {
         if (response.data && Array.isArray(response.data.results)) {
           const decodedData = response.data.results.map(decodeObjectValues);
           console.log('Decoded data:', decodedData); // Log the decoded data
-          setData(decodedData);
+          if (isMounted) setData(decodedData); // Only set state if still mounted
         } else {
           throw new Error('API response does not contain results array');
         }
       } catch (err) {
         console.error('API call error:', err);
-        setError(err as Error);
+        if (isMounted) setError(err as Error); // Only set state if still mounted
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false); // Only set state if still mounted
       }
     };
 
     fetchData();
+
+    return () => {
+      isMounted = false; // Set isMounted to false when component unmounts
+    };
   }, [url]);
 
   return { data, loading, error };

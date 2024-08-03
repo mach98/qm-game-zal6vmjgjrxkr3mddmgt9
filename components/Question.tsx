@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import React, { FC, memo, useState } from 'react';
+import React, { FC, memo, useMemo, useState } from 'react';
 import { COLORS } from '@/constants/colors';
 
 interface QuestionProps {
@@ -45,9 +45,9 @@ const Question: FC<QuestionProps> = ({
 }) => {
   if (!item) return null;
 
-  const allAnswers = insertCorrectAnswer(
-    item.correct_answer,
-    item.incorrect_answers
+  const allAnswers = useMemo(
+    () => insertCorrectAnswer(item.correct_answer, item.incorrect_answers),
+    [item]
   );
 
   const handlePress = (index: number) => {
@@ -55,6 +55,7 @@ const Question: FC<QuestionProps> = ({
     const isCorrect = allAnswers[index] === item.correct_answer;
     onAnswerSelection(isCorrect);
   };
+
   return (
     <View className='w-full'>
       <View
@@ -88,7 +89,6 @@ const Question: FC<QuestionProps> = ({
           >
             <Text className='font-semibold'>{getPrefix(index)}.</Text>
             <Text style={{ marginLeft: 10, fontSize: 15, alignSelf: 'center' }}>
-              {' '}
               {decodeURIComponent(answer)}
             </Text>
           </TouchableOpacity>
