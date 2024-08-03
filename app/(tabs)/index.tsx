@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Pressable,
+  ActivityIndicator,
 } from 'react-native';
 import React from 'react';
 import { Avatar, BackgroundImage, Help } from '@/constants/images';
