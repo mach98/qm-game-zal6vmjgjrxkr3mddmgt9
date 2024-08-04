@@ -5,4 +5,6 @@ export const COLORS = {
   correctAnswerColor: '#009028',
   correctAnswerBorder: '#00EA62',
   primary: '#2364AA',
+  lightBlue: '#2A75BC',
+  white: '#FFF',
 };

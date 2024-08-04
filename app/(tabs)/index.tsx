@@ -14,72 +14,80 @@ import { EraserIcon, NotificationIcon } from '@/constants/icons';
 import { AntDesign } from '@expo/vector-icons';
 import HomeScreenBackground from '@/components/HomeScreenBackground';
 import { Link } from 'expo-router';
+import { COLORS } from '@/constants/colors';
 
 const Home = () => {
   return (
     // <HomeScreenBackground>
+
     <SafeAreaView className='bg-homeBg flex-1'>
-      <View className='p-5 mt-10'>
-        <View className='flex-row justify-between items-center'>
+      <ImageBackground source={BackgroundImage} tintColor={COLORS.primary}>
+        <View className='p-5 mt-10'>
+          <View className='flex-row justify-between items-center'>
+            <Image
+              source={Avatar}
+              className='bg-white rounded-full p-5'
+              resizeMode='contain'
+            />
+            <View className='flex-row  justify-between items-center'>
+              <View className='flex-row px-5 py-2 rounded-full justify-between border-white border mr-1.5'>
+                <EraserIcon fontSize={10} />
+                <Text>0</Text>
+              </View>
+              <View className='flex-row px-5 py-2 bg-lightBlue rounded-full justify-between items-center'>
+                <Text className='text-darkBlue text-base font-semibold mr-1'>
+                  N5,000.00
+                </Text>
+                <AntDesign
+                  name='pluscircleo'
+                  size={10}
+                  color={COLORS.primary}
+                />
+              </View>
+              <NotificationIcon />
+            </View>
+          </View>
+          <Text className='text-white font-semibold text-2xl mt-3'>
+            Hello John 👋
+          </Text>
+          <Text className='text-white font-regular text-lg mt-1'>
+            Let's play and Earn
+          </Text>
+        </View>
+        <View className='bg-white self-center items-center rounded-xl mx-5'>
           <Image
-            source={Avatar}
-            className='bg-white rounded-full p-5'
-            resizeMode='contain'
+            source={Help}
+            className='bg-helpColor rounded-full self-end mr-5 mt-5 w-5 h-5'
+            resizeMode='center'
+            style={{ tintColor: 'white' }}
           />
-          <View className='flex-row  justify-between items-center'>
-            <View className='flex-row p-5 rounded-full justify-between border-white border'>
-              <EraserIcon fontSize={20} />
-              <Text>0</Text>
-            </View>
-            <View className='flex-row p-5 bg-lightBlue rounded-full justify-between'>
-              <Text className='text-darkBlue text-base font-semibold'>
-                N5,000.00
-              </Text>
-              <AntDesign name='pluscircleo' size={15} />
-            </View>
-            <NotificationIcon />
+          <View className='p-5 items-center'>
+            <Text className='text-darkBlue text-lg font-semibold text-center'>
+              Game Prize
+            </Text>
+            <Text className='text-darkBlue text-5xl font-bold mt-3'>
+              1,000,000
+            </Text>
+            <Text className='font-semibold text-center mt-1'>
+              Next Game: Tomorrow, 8PM
+            </Text>
+          </View>
+          <View className='mt-5 bg-primary w-full rounded-b-xl p-5 flex-row justify-between items-center'>
+            <Link href='/Game' asChild>
+              <Pressable
+                style={{
+                  backgroundColor: 'white',
+                  padding: 10,
+                  borderRadius: 15,
+                }}
+              >
+                <Text className='font-semibold text-primary'>Join Game</Text>
+              </Pressable>
+            </Link>
+            <Text className='text-white'>Entry Fee N100.00</Text>
           </View>
         </View>
-        <Text className='text-white font-semibold text-2xl mt-6'>
-          Hello John 👋
-        </Text>
-        <Text className='text-white font-regular text-xl mt-4'>
-          Let's play and Earn
-        </Text>
-      </View>
-      <View className='bg-white self-center items-center rounded-xl mx-5'>
-        <Image
-          source={Help}
-          className='bg-helpColor rounded-full self-end mr-5 mt-5 w-5 h-5'
-          resizeMode='center'
-          style={{ tintColor: 'white' }}
-        />
-        <View className='p-10'>
-          <Text className='text-darkBlue text-xl font-semibold text-center'>
-            Game Prize
-          </Text>
-          <Text className='text-darkBlue text-6xl font-semibold mt-5'>
-            1,000,000
-          </Text>
-          <Text className='font-semibold text-center mt-3'>
-            Next Game: Tomorrow, 8PM
-          </Text>
-        </View>
-        <View className='mt-7 bg-primary w-full rounded-b-xl p-5 flex-row justify-between items-center'>
-          <Link href='/Game' asChild>
-            <Pressable
-              style={{
-                backgroundColor: 'white',
-                padding: 10,
-                borderRadius: 15,
-              }}
-            >
-              <Text className='font-semibold text-primary'>Join Game</Text>
-            </Pressable>
-          </Link>
-          <Text className='text-white'>Entry Fee N100.00</Text>
-        </View>
-      </View>
+      </ImageBackground>
       <View className='p-5'>
         <Text className='text-black font-semibold'>Top Gamer of the Day</Text>
         <View className='flex-row justify-between mt-5'>
