@@ -32,33 +32,33 @@ const useDecodedData = (url: string) => {
   };
 
   useEffect(() => {
-    let isMounted = true; // Track whether the component is still mounted
+    let isMounted = true;
 
     const fetchData = async () => {
       try {
         setLoading(true);
         const response = await axios.get<DataObject>(url);
-        console.log('API response:', response.data); // Log the response
+        // console.log('API response:', response.data);
 
         if (response.data && Array.isArray(response.data.results)) {
           const decodedData = response.data.results.map(decodeObjectValues);
-          console.log('Decoded data:', decodedData); // Log the decoded data
-          if (isMounted) setData(decodedData); // Only set state if still mounted
+          //  console.log('Decoded data:', decodedData);
+          if (isMounted) setData(decodedData);
         } else {
           throw new Error('API response does not contain results array');
         }
       } catch (err) {
-        console.error('API call error:', err);
-        if (isMounted) setError(err as Error); // Only set state if still mounted
+        //  console.error('API call error:', err);
+        if (isMounted) setError(err as Error);
       } finally {
-        if (isMounted) setLoading(false); // Only set state if still mounted
+        if (isMounted) setLoading(false);
       }
     };
 
     fetchData();
 
     return () => {
-      isMounted = false; // Set isMounted to false when component unmounts
+      isMounted = false;
     };
   }, [url]);
 

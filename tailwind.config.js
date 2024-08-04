@@ -16,6 +16,7 @@ module.exports = {
         homeBg: '#F9F9F9',
         helpColor: '#51A2E0',
         questionBox: '#00CBF7',
+        questionBoxBg: '#DFF9FF',
       },
     },
   },

@@ -47,7 +47,7 @@ const GameScreen: FC = () => {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
     } else {
       router.replace({
-        pathname: '/ResultScreen',
+        pathname: '/Game/ResultScreen',
         params: {
           correctAnswersCount,
           incorrectAnswersCount,
