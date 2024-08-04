@@ -13,13 +13,18 @@
         "image": "latest"
       }
     },
+    "preview": {
+        "android": {
+          "buildType": "apk"
+        }
+      },
     "development-simulator": {
       "extends": "development",
       "ios": {
         "simulator": true
       }
     },
-    "preview": {
+    "preview2": {
       "distribution": "internal",
       "channel": "main",
       "android": {
