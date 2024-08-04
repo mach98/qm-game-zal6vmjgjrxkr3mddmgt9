@@ -6,22 +6,24 @@ import {
   Image,
   TouchableOpacity,
   Pressable,
-  ActivityIndicator,
 } from 'react-native';
 import React from 'react';
 import { Avatar, BackgroundImage, Help } from '@/constants/images';
 import { EraserIcon, NotificationIcon } from '@/constants/icons';
 import { AntDesign } from '@expo/vector-icons';
-import HomeScreenBackground from '@/components/HomeScreenBackground';
 import { Link } from 'expo-router';
 import { COLORS } from '@/constants/colors';
 
 const Home = () => {
   return (
-    // <HomeScreenBackground>
-
-    <SafeAreaView className='bg-homeBg flex-1'>
-      <ImageBackground source={BackgroundImage} tintColor={COLORS.primary}>
+    <SafeAreaView className='flex-1'>
+      <ImageBackground
+        source={BackgroundImage}
+        tintColor={COLORS.primary}
+        className='h-1/2 top-0'
+      />
+      <View className='h-3/5' />
+      <View className='absolute top-0'>
         <View className='p-5 mt-10'>
           <View className='flex-row justify-between items-center'>
             <Image
@@ -87,78 +89,77 @@ const Home = () => {
             <Text className='text-white'>Entry Fee N100.00</Text>
           </View>
         </View>
-      </ImageBackground>
-      <View className='p-5'>
-        <Text className='text-black font-semibold'>Top Gamer of the Day</Text>
-        <View className='flex-row justify-between mt-5'>
-          <View className='items-center'>
-            <Image
-              source={Avatar}
-              className='bg-white rounded-full p-5'
-              resizeMode='contain'
-            />
-            <Text>Joe</Text>
-            <Text className='text-primary'>N5,000</Text>
-          </View>
-          <View className='items-center'>
-            <Image
-              source={Avatar}
-              className='bg-white rounded-full p-5'
-              resizeMode='contain'
-            />
-            <Text>Sarah</Text>
-            <Text className='text-primary'>N5,000</Text>
-          </View>
-          <View className='items-center'>
-            <Image
-              source={Avatar}
-              className='bg-white rounded-full p-5'
-              resizeMode='contain'
-            />
-            <Text>Hanax</Text>
-            <Text className='text-primary'>N5,000</Text>
-          </View>
-          <View className='items-center'>
-            <Image
-              source={Avatar}
-              className='bg-white rounded-full p-5'
-              resizeMode='contain'
-            />
-            <Text>Inioluwa</Text>
-            <Text className='text-primary'>N5,000</Text>
-          </View>
-          <View className='items-center'>
-            <Image
-              source={Avatar}
-              className='bg-white rounded-full p-5'
-              resizeMode='contain'
-            />
-            <Text>Liz</Text>
-            <Text className='text-primary'>N5,000</Text>
+        <View className='px-5 py-3'>
+          <Text className='text-black font-semibold'>Top Gamer of the Day</Text>
+          <View className='flex-row justify-between mt-3'>
+            <View className='items-center'>
+              <Image
+                source={Avatar}
+                className='bg-white rounded-full p-4'
+                resizeMode='contain'
+              />
+              <Text>Joe</Text>
+              <Text className='text-primary'>N5,000</Text>
+            </View>
+            <View className='items-center'>
+              <Image
+                source={Avatar}
+                className='bg-white rounded-full p-4'
+                resizeMode='contain'
+              />
+              <Text>Sarah</Text>
+              <Text className='text-primary'>N5,000</Text>
+            </View>
+            <View className='items-center'>
+              <Image
+                source={Avatar}
+                className='bg-white rounded-full p-4'
+                resizeMode='contain'
+              />
+              <Text>Hanax</Text>
+              <Text className='text-primary'>N5,000</Text>
+            </View>
+            <View className='items-center'>
+              <Image
+                source={Avatar}
+                className='bg-white rounded-full p-4'
+                resizeMode='contain'
+              />
+              <Text>Inioluwa</Text>
+              <Text className='text-primary'>N5,000</Text>
+            </View>
+            <View className='items-center'>
+              <Image
+                source={Avatar}
+                className='bg-white rounded-full p-4'
+                resizeMode='contain'
+              />
+              <Text>Liz</Text>
+              <Text className='text-primary'>N5,000</Text>
+            </View>
           </View>
         </View>
-      </View>
-      <View className='items-start bg-primary m-5 p-5 py-7 rounded-lg'>
-        <Text className='text-white text-xl font-semibold'>
-          Refer & Earn with your Friends
-        </Text>
-        <Text className='text-white font-base w-4/6 mt-2'>
-          Share with your friends and loved ones to come and play
-        </Text>
-        <TouchableOpacity
-          style={{
-            padding: 10,
-            borderWidth: 1,
-            borderRadius: 15,
-            borderColor: 'white',
-            marginTop: 7,
-          }}
-        >
-          <Text className='text-white'>Invite Friends</Text>
-        </TouchableOpacity>
+        <View className='items-start bg-primary m-3 p-5 rounded-lg'>
+          <Text className='text-white text-xl font-semibold'>
+            Refer & Earn with your Friends
+          </Text>
+          <Text className='text-white font-base w-4/6 mt-2'>
+            Share with your friends and loved ones to come and play
+          </Text>
+          <TouchableOpacity
+            style={{
+              padding: 10,
+              borderWidth: 1,
+              borderRadius: 15,
+              borderColor: 'white',
+              marginTop: 7,
+            }}
+          >
+            <Text className='text-white'>Invite Friends</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
-    // </HomeScreenBackground>
   );
 };
 

@@ -18,24 +18,6 @@ export default () => {
         tabBarStyle: styles.tabBarStyle,
         tabBarInactiveTintColor: COLORS.white,
         tabBarActiveTintColor: COLORS.white,
-        tabBarIcon: ({ color, size, focused }) => {
-          switch (route.name) {
-            case 'index':
-              return <Octicons name='home' size={20} color={color} />;
-            case 'wallet':
-              return <Entypo name='wallet' size={20} color={color} />;
-            case 'store':
-              return <FontAwesome5 name='store' size={20} color={color} />;
-            case 'leaderboard':
-              return <FontAwesome name='trophy' size={20} color={color} />;
-            case 'settings':
-              return (
-                <Ionicons name='settings-outline' size={20} color={color} />
-              );
-            default:
-              return null;
-          }
-        },
       })}
     >
       <Tabs.Screen
@@ -43,7 +25,9 @@ export default () => {
         options={{
           tabBarLabel: 'Home',
           tabBarButton: (props) => (
-            <CustomTabBarButton route='home' {...props} />
+            <CustomTabBarButton route='home' {...props}>
+              <Octicons name='home' size={25} color={COLORS.white} />
+            </CustomTabBarButton>
           ),
           tabBarLabelPosition: 'below-icon',
         }}
@@ -52,7 +36,11 @@ export default () => {
         name='wallet'
         options={{
           tabBarLabel: 'Wallet',
-          tabBarButton: (props) => <CustomTabBarButton {...props} />,
+          tabBarButton: (props) => (
+            <CustomTabBarButton {...props}>
+              <Entypo name='wallet' size={25} color={COLORS.white} />
+            </CustomTabBarButton>
+          ),
           tabBarLabelPosition: 'below-icon',
         }}
       />
@@ -60,7 +48,11 @@ export default () => {
         name='store'
         options={{
           tabBarLabel: 'Store',
-          tabBarButton: (props) => <CustomTabBarButton {...props} />,
+          tabBarButton: (props) => (
+            <CustomTabBarButton {...props}>
+              <FontAwesome5 name='store' size={25} color={COLORS.white} />
+            </CustomTabBarButton>
+          ),
           tabBarLabelPosition: 'below-icon',
         }}
       />
@@ -68,8 +60,11 @@ export default () => {
         name='leaderboard'
         options={{
           tabBarLabel: 'LeaderBoard',
-          tabBarButton: (props) => <CustomTabBarButton {...props} />,
-          tabBarLabelPosition: 'below-icon',
+          tabBarButton: (props) => (
+            <CustomTabBarButton {...props}>
+              <FontAwesome name='trophy' size={25} color={COLORS.white} />
+            </CustomTabBarButton>
+          ),
         }}
       />
       <Tabs.Screen
@@ -77,7 +72,13 @@ export default () => {
         options={{
           tabBarLabel: 'Settings',
           tabBarButton: (props) => (
-            <CustomTabBarButton route='settings' {...props} />
+            <CustomTabBarButton route='settings' {...props}>
+              <Ionicons
+                name='settings-outline'
+                size={25}
+                color={COLORS.white}
+              />
+            </CustomTabBarButton>
           ),
           tabBarLabelPosition: 'below-icon',
         }}

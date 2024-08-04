@@ -10,6 +10,7 @@ import { BackgroundImage } from '@/constants/images';
 import Question, { insertCorrectAnswer } from '@/components/Question';
 import useDataDecoded from '@/hooks/useDataDecoded';
 import { router } from 'expo-router';
+import { COLORS } from '@/constants/colors';
 
 const GameScreen: FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -27,7 +28,7 @@ const GameScreen: FC = () => {
   if (loading) {
     return (
       <SafeAreaView className='bg-homeBg flex-1 items-center justify-center'>
-        <ActivityIndicator size='large' color='#0000ff' />
+        <ActivityIndicator size='large' color={COLORS.primary} />
       </SafeAreaView>
     );
   }
