@@ -1,70 +1,74 @@
+// {
+//   "cli": {
+//     "version": ">= 10.2.1",
+//   },
+//     "build": {
+//       "preview": {
+//         "android": {
+//           "buildType": "apk"
+//         }
+//       },
+//       "preview2": {
+//         "android": {
+//           "gradleCommand": ":app:assembleRelease"
+//         }
+//       },
+//       "preview3":{
+//         "developmentClient":true
+//       },
+//       "production": {
+//         "autoIncrement": true
+//       }
+//     }
+      
+//   }
 {
   "cli": {
-    "version": ">= 10.2.1",
-    "appVersionSource": "remote"
+    "version": ">= 10.2.1"
   },
-    "build": {
-      "preview": {
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": {
+        "image": "latest"
+      },
+      "ios": {
+        "image": "latest"
+      }
+    },
+    "preview": {
         "android": {
           "buildType": "apk"
         }
       },
-      "preview2": {
-        "android": {
-          "gradleCommand": ":app:assembleRelease"
-        }
+    "development-simulator": {
+      "extends": "development",
+      "ios": {
+        "simulator": true
+      }
+    },
+    "preview2": {
+      "distribution": "internal",
+      "channel": "main",
+      "android": {
+        "image": "latest"
       },
-      "preview3":{
-        "developmentClient":true
+      "ios": {
+        "image": "latest"
+      }
+    },
+    "production": {
+      "channel": "production",
+      "android": {
+        "image": "latest"
       },
-      "production": {
-        "autoIncrement": true
+      "ios": {
+        "image": "latest"
       }
     }
-      
+  },
+  "submit": {
+    "production": {}
   }
-// {
-//   "cli": {
-//     "version": ">= 10.2.1"
-//   },
-//   "build": {
-//     "development": {
-//       "developmentClient": true,
-//       "distribution": "internal",
-//       "android": {
-//         "image": "latest"
-//       },
-//       "ios": {
-//         "image": "latest"
-//       }
-//     },
-//     "development-simulator": {
-//       "extends": "development",
-//       "ios": {
-//         "simulator": true
-//       }
-//     },
-//     "preview": {
-//       "distribution": "internal",
-//       "channel": "main",
-//       "android": {
-//         "image": "latest"
-//       },
-//       "ios": {
-//         "image": "latest"
-//       }
-//     },
-//     "production": {
-//       "channel": "production",
-//       "android": {
-//         "image": "latest"
-//       },
-//       "ios": {
-//         "image": "latest"
-//       }
-//     }
-//   },
-//   "submit": {
-//     "production": {}
-//   }
-// }
+}
