@@ -33,7 +33,9 @@ const ResultScreen = () => {
         />
         <Text className='text-lg font-semibold'>Better luck next time</Text>
         <Text className='text-2xl font-semibold'>
-          Congratulations you won 🎉
+          {correctAnswersCount === 10
+            ? 'Congratulations you won 🎉'
+            : "Sorry you didn't win"}
         </Text>
       </View>
     </SafeAreaView>
