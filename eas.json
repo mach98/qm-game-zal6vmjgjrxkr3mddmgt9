@@ -1,45 +1,70 @@
 {
   "cli": {
-    "version": ">= 10.2.1"
+    "version": ">= 10.2.1",
+    "appVersionSource": "remote"
   },
-  "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal",
-      "android": {
-        "image": "latest"
+    "build": {
+      "preview": {
+        "android": {
+          "buildType": "apk"
+        }
       },
-      "ios": {
-        "image": "latest"
-      }
-    },
-    "development-simulator": {
-      "extends": "development",
-      "ios": {
-        "simulator": true
-      }
-    },
-    "preview": {
-      "distribution": "internal",
-      "channel": "main",
-      "android": {
-        "image": "latest"
+      "preview2": {
+        "android": {
+          "gradleCommand": ":app:assembleRelease"
+        }
       },
-      "ios": {
-        "image": "latest"
-      }
-    },
-    "production": {
-      "channel": "production",
-      "android": {
-        "image": "latest"
+      "preview3":{
+        "developmentClient":true
       },
-      "ios": {
-        "image": "latest"
+      "production": {
+        "autoIncrement": true
       }
     }
-  },
-  "submit": {
-    "production": {}
+      
   }
-}
+// {
+//   "cli": {
+//     "version": ">= 10.2.1"
+//   },
+//   "build": {
+//     "development": {
+//       "developmentClient": true,
+//       "distribution": "internal",
+//       "android": {
+//         "image": "latest"
+//       },
+//       "ios": {
+//         "image": "latest"
+//       }
+//     },
+//     "development-simulator": {
+//       "extends": "development",
+//       "ios": {
+//         "simulator": true
+//       }
+//     },
+//     "preview": {
+//       "distribution": "internal",
+//       "channel": "main",
+//       "android": {
+//         "image": "latest"
+//       },
+//       "ios": {
+//         "image": "latest"
+//       }
+//     },
+//     "production": {
+//       "channel": "production",
+//       "android": {
+//         "image": "latest"
+//       },
+//       "ios": {
+//         "image": "latest"
+//       }
+//     }
+//   },
+//   "submit": {
+//     "production": {}
+//   }
+// }
